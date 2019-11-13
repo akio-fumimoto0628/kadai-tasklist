@@ -38,26 +38,26 @@ public class CreateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Tasks m = new Tasks();
+            Tasks t = new Tasks();
 
             String title = request.getParameter("title");
-            m.setTitle(title);
+            t.setTitle(title);
 
             String content = request.getParameter("content");
-            m.setContent(content);
+            t.setContent(content);
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-            m.setCreated_at(currentTime);
-            m.setUpdated_at(currentTime);
+            t.setCreated_at(currentTime);
+            t.setUpdated_at(currentTime);
 
             // バリデーションを実行してエラーがあったら新規登録のフォームに戻る
-            List<String> errors = MessageValidator.validate(m);
+            List<String> errors = MessageValidator.validate(t);
             if(errors.size() > 0) {
                 em.close();
 
                 // フォームに初期値を設定、さらにエラーメッセージを送る
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("message", m);
+                request.setAttribute("tasks", t);
                 request.setAttribute("errors", errors);
 
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/new.jsp");
@@ -65,7 +65,7 @@ public class CreateServlet extends HttpServlet {
             } else {
                 // データベースに保存
                 em.getTransaction().begin();
-                em.persist(m);
+                em.persist(t);
                 em.getTransaction().commit();
                 request.getSession().setAttribute("flush", "登録が完了しました。");
                 em.close();
@@ -74,18 +74,7 @@ public class CreateServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/index");
             }
 
-            em.getTransaction().begin();
-            em.persist(m);
-            em.getTransaction().commit();
 
-            // データベースに保存
-            em.getTransaction().begin();
-            em.persist(m);
-            em.getTransaction().commit();
-            request.getSession().setAttribute("flush", "登録が完了しました。");       // ここを追記
-            em.close();
-
-            response.sendRedirect(request.getContextPath() + "/index");
         }
     }
 
