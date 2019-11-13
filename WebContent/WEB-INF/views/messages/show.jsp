@@ -10,11 +10,7 @@
                     <tbody>
                         <tr>
                             <th>ID</th>
-                            <td><c:out value="${message.id}" /></td>
-                        </tr>
-                        <tr>
-                            <th>タスクの内容</th>
-                            <td><c:out value="${message.content}" /></td>
+                            <td><c:out value="${tasks.id}" /></td>
                         </tr>
                         <tr>
                             <th>作成日時の</th>

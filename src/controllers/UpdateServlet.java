@@ -41,24 +41,24 @@ public class UpdateServlet extends HttpServlet {
 
             // セッションスコープからメッセージのIDを取得して
             // 該当のIDのメッセージ1件のみをデータベースから取得
-            Tasks m = em.find(Tasks.class, (Integer)(request.getSession().getAttribute("tasks_id")));
+            Tasks t = em.find(Tasks.class, (Integer)(request.getSession().getAttribute("tasks_id")));
 
             // フォームの内容を各プロパティに上書き
 
             String content = request.getParameter("content");
-            m.setContent(content);
+            t.setContent(content);
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-            m.setUpdated_at(currentTime);       // 更新日時のみ上書き
+            t.setUpdated_at(currentTime);       // 更新日時のみ上書き
 
             // バリデーションを実行してエラーがあったら編集画面のフォームに戻る
-            List<String> errors = MessageValidator.validate(m);
+            List<String> errors = MessageValidator.validate(t);
             if(errors.size() > 0) {
                 em.close();
 
                 // フォームに初期値を設定、さらにエラーメッセージを送る
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("tasks", m);
+                request.setAttribute("tasks", t);
                 request.setAttribute("errors", errors);
 
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/edit.jsp");
