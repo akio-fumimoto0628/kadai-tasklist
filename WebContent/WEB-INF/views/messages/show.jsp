@@ -9,15 +9,15 @@
          <table>
                     <tbody>
                         <tr>
-                            <th>タイトル</th>
-                            <td><c:out value="${message.title}" /></td>
+                            <th>ID</th>
+                            <td><c:out value="${message.id}" /></td>
                         </tr>
                         <tr>
-                            <th>メッセージ</th>
+                            <th>タスクの内容</th>
                             <td><c:out value="${message.content}" /></td>
                         </tr>
                         <tr>
-                            <th>作成日時</th>
+                            <th>作成日時の</th>
                             <td><fmt:formatDate value="${message.created_at}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
                         </tr>
                         <tr>
