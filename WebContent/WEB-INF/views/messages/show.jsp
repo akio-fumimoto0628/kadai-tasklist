@@ -9,11 +9,11 @@
          <table>
                     <tbody>
                         <tr>
-                            <th>ID</th>
-                            <td><c:out value="${tasks.id}" /></td>
+                            <th>タスク内容</th>
+                            <td><c:out value="${tasks.content}" /></td>
                         </tr>
                         <tr>
-                            <th>作成日時の</th>
+                            <th>作成日時</th>
                             <td><fmt:formatDate value="${message.created_at}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
                         </tr>
                         <tr>
@@ -24,7 +24,7 @@
                 </table>
 
         <p><a href="${pageContext.request.contextPath}/index">一覧に戻る</a></p>
-        <p><a href="${pageContext.request.contextPath}/edit?id=${message.id}">このメッセージを編集する</a></p>
+        <p><a href="${pageContext.request.contextPath}/edit?id=${tasks.id}">このメッセージを編集する</a></p>
 
     </c:param>
 </c:import>

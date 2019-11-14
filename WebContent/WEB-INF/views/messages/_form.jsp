@@ -10,7 +10,7 @@
     </div>
 </c:if>
 
-<label for="content">タスク管理</label><br />
+<label for="content">タスク内容</label><br />
 <input type="text" name="content" value="${tasks.content}" />
 <br /><br />
 
