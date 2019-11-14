@@ -4,13 +4,13 @@
 <c:import url="../layout/app.jsp">
     <c:param name="content">
 
-        <h2>id : ${tasks.id} のタスク詳細ページ</h2>
+        <h2>id : ${message.id} のタスク詳細ページ</h2>
 
          <table>
                     <tbody>
                         <tr>
                             <th>タスク内容</th>
-                            <td><c:out value="${tasks.content}" /></td>
+                            <td><c:out value="${message.content}" /></td>
                         </tr>
                         <tr>
                             <th>作成日時</th>
